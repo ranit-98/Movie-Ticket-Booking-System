@@ -1,0 +1,143 @@
+{
+  "info": {
+    "name": "Movie Ticket Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth: Signup",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/auth/signup", "host": ["{{baseUrl}}"], "path": ["api","auth","signup"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john@example.com\",\"password\":\"pass1234\",\"confirmPassword\":\"pass1234\",\"phone\":\"1234567890\",\"dateOfBirth\":\"1990-05-12\"}"
+        }
+      }
+    },
+    {
+      "name": "Auth: Login",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/auth/login", "host": ["{{baseUrl}}"], "path": ["api","auth","login"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"john@example.com\",\"password\":\"pass1234\"}"
+        }
+      }
+    },
+    {
+      "name": "Auth: Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": { "raw": "{{baseUrl}}/api/auth/refresh-token", "host": ["{{baseUrl}}"], "path": ["api","auth","refresh-token"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"refreshToken\":\"{{refreshToken}}\"}"
+        }
+      }
+    },
+    {
+      "name": "Users: Get My Profile",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/auth/profile", "host": ["{{baseUrl}}"], "path": ["api","auth","profile"] }
+      }
+    },
+    {
+      "name": "Movies: List All",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/api/movies", "host": ["{{baseUrl}}"], "path": ["api","movies"] }
+      }
+    },
+    {
+      "name": "Movies: Get By ID",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "{{baseUrl}}/api/movies/{{movieId}}", "host": ["{{baseUrl}}"], "path": ["api","movies","{{movieId}}"] }
+      }
+    },
+    {
+      "name": "Bookings: Create Booking",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/bookings", "host": ["{{baseUrl}}"], "path": ["api","bookings"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"showTimeId\":\"{{showTimeId}}\",\"seats\":[\"A1\",\"A2\"],\"paymentMethod\":\"card\"}"
+        }
+      }
+    },
+    {
+      "name": "Bookings: My Bookings",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+        "url": { "raw": "{{baseUrl}}/api/bookings/my-bookings", "host": ["{{baseUrl}}"], "path": ["api","bookings","my-bookings"] }
+      }
+    },
+    {
+      "name": "Admin: Dashboard",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+        "url": { "raw": "{{baseUrl}}/api/admin/dashboard", "host": ["{{baseUrl}}"], "path": ["api","admin","dashboard"] }
+      }
+    },
+    {
+      "name": "Admin: List Users",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+        "url": { "raw": "{{baseUrl}}/api/admin/users", "host": ["{{baseUrl}}"], "path": ["api","admin","users"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"limit\":10,\"offset\":0,\"search\":\"\"}"
+        }
+      }
+    },
+    {
+      "name": "Admin: Update User Status",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/admin/users/{{userId}}/status", "host": ["{{baseUrl}}"], "path": ["api","admin","users","{{userId}}","status"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"isActive\":false}"
+        }
+      }
+    },
+    {
+      "name": "Admin: Revenue Stats",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+        "url": { "raw": "{{baseUrl}}/api/admin/stats/revenue", "host": ["{{baseUrl}}"], "path": ["api","admin","stats","revenue"] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "token", "value": "" },
+    { "key": "refreshToken", "value": "" },
+    { "key": "adminToken", "value": "" },
+    { "key": "movieId", "value": "" },
+    { "key": "userId", "value": "" },
+    { "key": "showTimeId", "value": "" }
+  ]
+}
