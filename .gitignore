@@ -5,6 +5,9 @@ dist/
 .env.development.local
 .env.test.local
 .env.production.local
+Movie_Ticket_Booking_Collection.postman_collection.json
+MovieTicketBooking.postman_collection.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
